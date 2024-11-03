@@ -49,7 +49,7 @@ class TripBatchJobLauncher(
         }
 
         if ("command" !in parameters.keys) {
-            logger.error("Missing required arguments: command")
+            logger.info("Missing required arguments: command")
             return
         }
 

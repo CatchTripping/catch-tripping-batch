@@ -26,7 +26,7 @@ class AreaBasedContentJobService(
 
         val missingKeys = requiredKeys.filter { it !in parameters.keys }
         if (missingKeys.isNotEmpty()) {
-            logger.error("Missing required arguments: ${missingKeys.joinToString(", ")}")
+            logger.info("Missing required arguments: ${missingKeys.joinToString(", ")}")
             logger.error("Please provide the required arguments in the format key=value.")
             return
         }

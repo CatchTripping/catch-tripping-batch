@@ -7,11 +7,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class AreaBasedItemProcessor : ItemProcessor<List<AreaBasedResponse>, List<AreaBased>> {
+class AreaBasedContentItemProcessor : ItemProcessor<List<AreaBasedContentResponse>, List<AreaBasedContent>> {
 
     private val formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
 
-    override fun process(item: List<AreaBasedResponse>): List<AreaBased> {
+    override fun process(item: List<AreaBasedContentResponse>): List<AreaBasedContent> {
 
         return item.map {
 
@@ -23,7 +23,7 @@ class AreaBasedItemProcessor : ItemProcessor<List<AreaBasedResponse>, List<AreaB
                 }
             }
 
-            AreaBased(
+            AreaBasedContent(
                 addr1 = it.addr1,
                 addr2 = it.addr2,
                 areaCode = it.areacode,

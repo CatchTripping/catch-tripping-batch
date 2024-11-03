@@ -4,13 +4,13 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
-class AreaBasedBulkRepository(
+class AreaBasedContentBulkRepository(
     private val jdbcTemplate: JdbcTemplate
 ) {
 
-    fun saveAll(list: List<AreaBased>) {
+    fun saveAll(list: List<AreaBasedContent>) {
         val sql = """
-        INSERT INTO area_based 
+        INSERT INTO area_based_contents
         (addr1, addr2, areacode, booktour, cat1, cat2, cat3, contentid, contenttypeid, createdtime, firstimage, firstimage2, cpyrht_div_cd, mapx, mapy, mlevel, modifiedtime, sigungucode, tel, title, zipcode) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """

@@ -1,6 +1,6 @@
 package site.muleo.ssafy_trip_batch.area_based
 
-data class AreaBasedResponse(
+data class AreaBasedContentResponse(
     val addr1: String? = null,
     val addr2: String? = null,
     val areacode: Byte? = null,

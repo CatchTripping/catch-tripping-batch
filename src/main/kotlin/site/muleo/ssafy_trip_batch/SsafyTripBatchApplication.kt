@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.stereotype.Component
-import site.muleo.ssafy_trip_batch.area_based.AreaBasedJobService
+import site.muleo.ssafy_trip_batch.area_based.AreaBasedContentJobService
 import kotlin.system.exitProcess
 
 @SpringBootApplication
@@ -24,10 +24,10 @@ fun main(args: Array<String>) {
 
 @Component
 class TripBatchJobLauncher(
-    private val areaBasedJobService: AreaBasedJobService
+    private val areaBasedContentJobService: AreaBasedContentJobService
 ) : CommandLineRunner {
 
-    private val logger: Logger = LoggerFactory.getLogger(AreaBasedJobService::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(AreaBasedContentJobService::class.java)
 
     override fun run(vararg args: String?) {
 
@@ -60,7 +60,7 @@ class TripBatchJobLauncher(
         }
 
         when (parameters["service"]) {
-            "AreaBased" -> areaBasedJobService.run(parameters)
+            "AreaBased" -> areaBasedContentJobService.run(parameters)
             else -> logger.error("Invalid arguments: service=${parameters["service"]}")
         }
     }

@@ -12,13 +12,13 @@ import java.time.format.DateTimeFormatter
 
 
 @Service
-class AreaBasedJobService(
+class AreaBasedContentJobService(
     private val jobLauncher: JobLauncher,
     @Qualifier("areaBasedJob")
     private val job: Job,
 ) {
 
-    private val logger = LoggerFactory.getLogger(AreaBasedJobService::class.java)
+    private val logger = LoggerFactory.getLogger(AreaBasedContentJobService::class.java)
 
     fun run(parameters: Map<String, String>) {
 

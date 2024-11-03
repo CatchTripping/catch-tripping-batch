@@ -2,8 +2,7 @@ package site.muleo.ssafy_trip_batch.area_based
 
 import java.time.LocalDateTime
 
-data class AreaBased(
-    val id: Int = 0,
+data class AreaBasedContent(
     val addr1: String? = null,
     val addr2: String? = null,
     val areaCode: Byte? = null,

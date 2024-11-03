@@ -2,6 +2,7 @@ package site.muleo.ssafy_trip_batch.area_code
 
 import org.slf4j.LoggerFactory
 import org.springframework.batch.core.Job
+import org.springframework.batch.core.JobExecution
 import org.springframework.batch.core.JobParametersBuilder
 import org.springframework.batch.core.launch.JobLauncher
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException
@@ -20,16 +21,17 @@ class AreaCodeJobService(
 
     private val logger = LoggerFactory.getLogger(AreaCodeJobService::class.java)
 
-    fun run(parameters: Map<String, String>) {
+    fun run(parameters: Map<String, String>): JobExecution? {
 
         val jobParameters = JobParametersBuilder()
             .addString("today", LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))) // 오늘 날짜 추가
             .toJobParameters()
 
         try {
-            jobLauncher.run(job, jobParameters)
+            return jobLauncher.run(job, jobParameters)
         } catch (e: JobInstanceAlreadyCompleteException) {
             logger.error("Job instance already complete. ${e.message}")
+            return null
         }
     }
 

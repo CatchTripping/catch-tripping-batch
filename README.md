@@ -1,5 +1,18 @@
 [문서](http://localhost:8080/docs)
 
+# 완성된 것
+
+## AreaCode
+```sh
+curl -X POST 'http://localhost:8080/areaCode' -H 'accept: application/json' -d ''
+```
+
+```sh
+Invoke-WebRequest -Uri 'http://localhost:8080/areaCode' -Method 'POST' -Headers @{ 'accept' = 'application/json' } -Body ''
+```
+
+## Sigungu_codes
+
 # 준비물
 1. 데이터베이스  
   mysql 이 필요합니다. 32769 port  

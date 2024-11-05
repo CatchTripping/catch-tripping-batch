@@ -1,0 +1,25 @@
+package site.muleo.ssafy_trip_batch.domain.area_based
+
+data class AreaBasedContentResponse(
+    val addr1: String? = null,
+    val addr2: String? = null,
+    val areacode: Byte? = null,
+    val booktour: String? = null,
+    val cat1: String? = null,
+    val cat2: String? = null,
+    val cat3: String? = null,
+    val contentid: Int,
+    val contenttypeid: Byte,
+    val createdtime: String,
+    val firstimage: String? = null,
+    val firstimage2: String? = null,
+    val cpyrhtDivCd: String? = null,
+    val mapx: Double? = null,
+    val mapy: Double? = null,
+    val mlevel: Byte? = null,
+    val modifiedtime: String,
+    val sigungucode: Byte? = null,
+    val tel: String? = null,
+    val title: String,
+    val zipcode: String? = null,
+)

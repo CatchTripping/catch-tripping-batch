@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.stereotype.Component
-import site.muleo.ssafy_trip_batch.area_based.AreaBasedContentJobService
+import site.muleo.ssafy_trip_batch.domain.area_based.AreaBasedContentJobService
 import kotlin.system.exitProcess
 
 @SpringBootApplication
@@ -27,7 +27,8 @@ class TripBatchJobLauncher(
     private val areaBasedContentJobService: AreaBasedContentJobService
 ) : CommandLineRunner {
 
-    private val logger: Logger = LoggerFactory.getLogger(AreaBasedContentJobService::class.java)
+    private val logger: Logger =
+        LoggerFactory.getLogger(AreaBasedContentJobService::class.java)
 
     override fun run(vararg args: String?) {
 

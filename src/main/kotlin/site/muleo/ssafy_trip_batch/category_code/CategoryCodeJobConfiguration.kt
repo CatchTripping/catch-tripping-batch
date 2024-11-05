@@ -20,34 +20,79 @@ class CategoryCodeJobConfiguration(
 ) {
 
     @Bean
-    fun categoryCodeJob(categoryCodeStep: Step): Job {
+    fun categoryCodeJob(cat1CodeStep: Step, cat2CodeStep: Step, cat3CodeStep: Step): Job {
         return JobBuilder("categoryCodeJob", jobRepository)
-            .flow(categoryCodeStep)
+            .flow(cat1CodeStep)
+            .next(cat2CodeStep)
+            .next(cat3CodeStep)
             .end()
             .build()
     }
 
     @Bean
-    fun categoryCodeStep(
-        categoryCodeItemReader: ItemReader<List<CategoryCodeResponse>>,
+    fun cat1CodeStep(
+        cat1CodeItemReader: ItemReader<List<CategoryCodeResponse>>,
         categoryCodeItemProcessor: ItemProcessor<List<CategoryCodeResponse>, List<CategoryCode>>,
         categoryCodeItemWriter: ItemWriter<List<CategoryCode>>,
     ): Step {
         return StepBuilder("CategoryCodeStep", jobRepository)
             .chunk<List<CategoryCodeResponse>, List<CategoryCode>>(100, transactionManager)
-            .reader(categoryCodeItemReader)
+            .reader(cat1CodeItemReader)
             .processor(categoryCodeItemProcessor)
             .writer(categoryCodeItemWriter)
             .build()
     }
 
     @Bean
-    fun categoryCodeItemReader(
-        restTemplate: RestTemplate
-    ): ItemReader<List<CategoryCodeResponse>> {
-        return CategoryCodeItemReader(restTemplate)
+    fun cat2CodeStep(
+        cat2CodeItemReader: ItemReader<List<CategoryCodeResponse>>,
+        categoryCodeItemProcessor: ItemProcessor<List<CategoryCodeResponse>, List<CategoryCode>>,
+        categoryCodeItemWriter: ItemWriter<List<CategoryCode>>,
+    ): Step {
+        return StepBuilder("CategoryCodeStep", jobRepository)
+            .chunk<List<CategoryCodeResponse>, List<CategoryCode>>(100, transactionManager)
+            .reader(cat2CodeItemReader)
+            .processor(categoryCodeItemProcessor)
+            .writer(categoryCodeItemWriter)
+            .build()
     }
 
+    @Bean
+    fun cat3CodeStep(
+        cat3CodeItemReader: ItemReader<List<CategoryCodeResponse>>,
+        categoryCodeItemProcessor: ItemProcessor<List<CategoryCodeResponse>, List<CategoryCode>>,
+        categoryCodeItemWriter: ItemWriter<List<CategoryCode>>,
+    ): Step {
+        return StepBuilder("CategoryCodeStep", jobRepository)
+            .chunk<List<CategoryCodeResponse>, List<CategoryCode>>(100, transactionManager)
+            .reader(cat3CodeItemReader)
+            .processor(categoryCodeItemProcessor)
+            .writer(categoryCodeItemWriter)
+            .build()
+    }
+
+
+    @Bean
+    fun cat1CodeItemReader(
+        restTemplate: RestTemplate
+    ): ItemReader<List<CategoryCodeResponse>> {
+        return Cat1CodeItemReader(restTemplate)
+    }
+
+    @Bean
+    fun cat2CodeItemReader(
+        restTemplate: RestTemplate,
+        categoryCodeRepository: CategoryCodeRepository
+    ): ItemReader<List<CategoryCodeResponse>> {
+        return Cat2CodeItemReader(restTemplate, categoryCodeRepository)
+    }
+
+    @Bean
+    fun cat3CodeItemReader(
+        restTemplate: RestTemplate
+    ): ItemReader<List<CategoryCodeResponse>> {
+        return Cat3CodeItemReader(restTemplate)
+    }
 
     @Bean
     fun categoryCodeItemProcessor(): ItemProcessor<List<CategoryCodeResponse>, List<CategoryCode>> {

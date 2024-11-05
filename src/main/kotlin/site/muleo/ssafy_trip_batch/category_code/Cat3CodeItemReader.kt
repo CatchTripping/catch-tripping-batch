@@ -1,4 +1,4 @@
-package site.muleo.ssafy_trip_batch.area_code
+package site.muleo.ssafy_trip_batch.category_code
 
 import org.slf4j.LoggerFactory
 import org.springframework.batch.item.ItemReader
@@ -11,31 +11,21 @@ import org.springframework.web.server.ResponseStatusException
 import org.springframework.web.util.UriComponentsBuilder
 import site.muleo.ssafy_trip_batch.model.ApiRequest
 import site.muleo.ssafy_trip_batch.model.ApiResponse
-import java.util.*
 
-class AreaCodeItemReader(
+class Cat3CodeItemReader(
     private val restTemplate: RestTemplate
-) : ItemReader<List<AreaCodeResponse>> {
+) : ItemReader<List<CategoryCodeResponse>> {
 
-    private val logger = LoggerFactory.getLogger(AreaCodeItemReader::class.java)
+    private val logger = LoggerFactory.getLogger(Cat3CodeItemReader::class.java)
 
     private var pageNo = 1
     private val mobileOS = "ETC"
     private val mobileApp = "AppTest"
     private val type = "json"
 
-    override fun read(): List<AreaCodeResponse>? {
+    override fun read(): List<CategoryCodeResponse>? {
 
-        // cat 1
-        // https://apis.data.go.kr/B551011/KorService1/areaCode1?serviceKey=Vd9WAkYUqieoe7823m9baFDddi3miXBM9Q0p05%2Fa8sPogz5vJgAXyj%2B4kMlaGx1nupb%2BxWNpbs0ItTU9%2FbfQFA%3D%3D&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json
-        // https://apis.data.go.kr/B551011/KorService1/areaCode1?serviceKey=Vd9WAkYUqieoe7823m9baFDddi3miXBM9Q0p05%2Fa8sPogz5vJgAXyj%2B4kMlaGx1nupb%2BxWNpbs0ItTU9%2FbfQFA%3D%3D&pageNo=2&MobileOS=ETC&MobileApp=AppTest&_type=json
-        // https://apis.data.go.kr/B551011/KorService1/areaCode1?serviceKey=Vd9WAkYUqieoe7823m9baFDddi3miXBM9Q0p05%2Fa8sPogz5vJgAXyj%2B4kMlaGx1nupb%2BxWNpbs0ItTU9%2FbfQFA%3D%3D&pageNo=3&MobileOS=ETC&MobileApp=AppTest&_type=json
-
-        // cat 2
-        //
-
-
-        val url = UriComponentsBuilder.fromHttpUrl("https://apis.data.go.kr/B551011/KorService1/areaCode1")
+        val url = UriComponentsBuilder.fromHttpUrl("https://apis.data.go.kr/B551011/KorService1/categoryCode1")
             .queryParam("serviceKey", ApiRequest.serviceKey)
             .queryParam("pageNo", pageNo)
             .queryParam("MobileOS", mobileOS)
@@ -43,14 +33,14 @@ class AreaCodeItemReader(
             .queryParam("_type", type)
             .build(true).toUri()
 
-        logger.info("API REQUEST URL areaCode1 : {}", url.toString())
+        logger.info("API REQUEST URL cat3Code1 : {}", url.toString())
 
-        val responseEntity: ResponseEntity<ApiResponse<AreaCodeResponse>> =
+        val responseEntity: ResponseEntity<ApiResponse<CategoryCodeResponse>> =
             restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 null,
-                object : ParameterizedTypeReference<ApiResponse<AreaCodeResponse>>() {})
+                object : ParameterizedTypeReference<ApiResponse<CategoryCodeResponse>>() {})
 
         if (responseEntity.statusCode != HttpStatus.OK) {
             throw ResponseStatusException(

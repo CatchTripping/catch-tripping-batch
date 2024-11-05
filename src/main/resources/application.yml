@@ -25,11 +25,7 @@ spring:
       accept-empty-string-as-null-object: true
 logging:
   level:
-    org.springframework.jdbc.core: DEBUG # Spring JDBC ?? ??? ?? ??
-    org.springframework.jdbc.datasource: DEBUG # ??? ??? ??? ??
-    org.springframework.jdbc.support: TRACE # SQL ?? ?? ???? ??? ??
-    org.hibernate.SQL: DEBUG # Hibernate SQL ?? (JPA ?? ?)
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE # SQL ???? ??? ??
+    org.springframework.jdbc: DEBUG
 springdoc:
   swagger-ui:
     path: /docs
